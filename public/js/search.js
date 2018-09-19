@@ -1,50 +1,3 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Restaurants</title>
-        <meta charset="utf-8"/>
-        <link rel="stylesheet" type="text/css" href="/static/restaurants.css"> 
-        <link rel="stylesheet" type="text/css" href="/static/home.css"> 
-        <script src="static/js/search.js"></script>
-    </head>
-    <body >
-        <ul class="topnav">
-            <li class="right"><a onclick='goHome()'>Logout</a></li>
-        </ul>
-        <div class="container">
-            <div class="form-container">
-            <form class="search-container"  onsubmit="event.preventDefault(); onLoadHandler();">
-                    <input type="text" name="search" id="location" placeholder="Search by location">
-                    <div onclick="onLoadHandler()">
-                        <button type="submit">Go</button>
-                            </div>
-                            
-                </form>
-
-                <form name="form2">      
-                <select name = "rating" id = "selectRating" onChange="onLoadHandler()">
-                    <option value="0">Rating</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                </select>
-                <select name = "cuisine" id = "selectCuisine" onChange="onLoadHandler()">
-                    <option value="0">Cuisine</option>
-                    <option value="Indian">Indian</option>
-                    <option value="American">American</option>
-                    <option value="Chinese">Chinese</option>
-                </select>
-            </div>
-            </form>
-            
-                
-            <div id="map" style="width:100%;height:600px"></div>
-            <div id="restaurant-list"></div>
-        </div>
-    <!-- </body> -->
-    <!-- <script>
 
         var map;
         var restaurantResponse = null;
@@ -229,9 +182,3 @@
           }
         }
     
-      </script> -->
-      <script async defer
-      src="https://maps.googleapis.com/maps/api/js?key=####&callback=initMap">
-      </script>
-    </body>
-    </html>
