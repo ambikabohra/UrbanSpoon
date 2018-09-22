@@ -3,7 +3,7 @@ var url = require('url');
 function fetchRestaurants(req,res){
     var location= req.body.location;
     console.log(location);
-    if (req.session.user) {
+    //if (req.session.user) {
 
         if (location != null && location.trim().toLowerCase() === "fremont") {
             console.log("Fremont data");
@@ -29,10 +29,11 @@ function fetchRestaurants(req,res){
             res.status(400).send({"message":"Please enter valid location!"});
         }
     
-    } else {
-        console.log("Nobody is currently logged in!");
-        res.status(400).send({"message":"Nobody is currently logged in!"});
-    }
+    //} 
+    // else {
+    //     console.log("Nobody is currently logged in!");
+    //     res.status(400).send({"message":"Nobody is currently logged in!"});
+    // }
 }
 
 function getFremontRestaurants() {
