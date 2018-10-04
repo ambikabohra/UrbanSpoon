@@ -5,13 +5,21 @@
         <link rel="stylesheet" type="text/css" href="/static/login.css">
         <link rel="stylesheet" type="text/css" href="/static/home.css"> 
         <link rel="stylesheet" type="text/css" href="/static/canvasCss.css"> 
+        <link rel="stylesheet" href="/static/jquery-ui.css">
+	    <link rel="stylesheet" href="/static/jquery-ui.theme.css">
+	
+	<script
+		src="https://code.jquery.com/jquery-3.3.1.min.js"
+		integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+		crossorigin="anonymous"></script>
+	<script src="/static/jquery-ui.js"></script>
 
         
     </header>
-    <body >
+    <body onload = "jQueryChanges()">
         
         <ul class="topnav">
-            <li><a class="active" href="/">Home</a></li>
+            <li><a href="/">Home</a></li>
         </ul>
             
         <form id="login_id" name=LoginForm method="post">
@@ -22,7 +30,7 @@
 
               <div class="form-row">
                 <label class="labl">User Name</label>
-                <input type="text" placeholder = "xxxxx@xxxxx.xxx" pattern = "^.+@.+\..{2,4}$" name="username" id="username" class="email" required/>
+                <input type="text" placeholder="xxxxx@xxxxx.xxx" pattern="^.+@.+\..{2,4}$" name="username" id="username" class="email" required/>
               </div>
               
     
@@ -40,6 +48,15 @@
             
             <canvas id="canvas"></canvas>  
     </body>
+
+    <script type = "text/javascript">
+        function jQueryChanges()
+        {
+            //Button widget used
+            $('a, .box input[type=button]').button();
+        }
+    </script>
+    
     
   
     <script src="/static/js/canvasJs.js"></script>
