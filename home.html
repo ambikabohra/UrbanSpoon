@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" href="/static/home.css">
@@ -10,54 +9,70 @@
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 	 crossorigin="anonymous"></script>
 	<script src="/static/jquery-ui.js"></script>
+	<script type="text/javascript" src="/static/js/tabs.js"></script>
 	<!-- <style>
 </style> -->
 </head>
 
-<body onload="draw()">
-	<video autoplay muted loop id="myVideo">
+<body onload = "draw()">
+	<!-- <video autoplay muted loop id="myVideo">
 		<source src="https://media.giphy.com/media/7JzHsh3UTip20/giphy.mp4" type="video/mp4">
 		Your browser does not support HTML5 video.
-	</video>
-
-	<ul class="topnav">
-		<li><a href="/">Home</a></li>
-		<!-- <li><a href="/">Home</a></li> -->
+	</video> -->
+	<div class="bew">
+		<a class="active" href="/">Home</a>
+		<a href="/login" style="float:right">Login</a>
+	  </div>
+	<!-- <ul class="topnav">
+		<li><a class="active" href="/">Home</a></li>
+		
 		<li class="right"><a href="/login">Login</a></li>
-		<!-- <li><a href="/login">Login</a></li> -->
-	</ul>
+	</ul> -->
+	<div id="tabs">
+        <ul>
+            <li><a href="/static/html/a.html">About Us</a></li>
+            <li><a href="/static/html/b.html">Team Info</a></li>
+            <li><a href="/static/html/c.html">Upcoming Features</a></li>
+            <li><a href="/static/html/d.html">Extra</a></li>
+        </ul>
+    </div>
 
+	<!-- <div class="content">
 
-	<div class="content">
-		<div style="padding:0 ;">
-			<canvas id="canvas" height="100" width="280">
-				<p>Canvas not supported!</p>
-			</canvas>
-			<h1>RESTAURANTS' TRACKER WEBSITE</h1>
-		</div>
-	</div>
+		<div>
+
+			<div style="padding:0 ;">
+				<canvas id = "canvas"
+		height = "100"
+		width = "280">
+	<p>Canvas not supported!</p>
+		</canvas> 
+			</div> -->
 </body>
-
 </html>
 
 <script type="text/javascript">
 	function draw() {
 		//Button widget used
-		$('a').button();
-
+		// $('a').button();
+	}
+		</script>
+<!-- <script type = "text/javascript">
+	function draw()
+	{
 		var canvas = document.getElementById("canvas");
 		var con = canvas.getContext("2d");
-
+		
 		con.strokeStyle = "black";
 		con.strokeRect(0, 0, 500, 200);
-
+		
 		con.shadowOffsetX = 3;
 		con.shadowOffsetY = 3;
 		con.shadowColor = "gray";
 		con.shadowBlur = 5;
-
+		
 		con.font = "29pt sans-serif";
 		con.fillStyle = "Yellow";
 		con.fillText("URBANSPOON", 3, 65);
 	}
-</script>
+</script> -->
