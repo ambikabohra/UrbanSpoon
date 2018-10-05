@@ -1,80 +1,91 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Restaurants</title>
-        <meta charset="utf-8" />
-        <link rel="stylesheet" type="text/css" href="/static/restaurants.css">
-        <link rel="stylesheet" type="text/css" href="/static/home.css">
-        <link rel="stylesheet" href="/static/jquery-ui.css">
-        <link rel="stylesheet" href="/static/jquery-ui.theme.css">
-    
-        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-            crossorigin="anonymous"></script>
-        <script src="/static/jquery-ui.js"></script>
-    
-        <script src="static/js/search.js"></script>
-    </head>
-    <body onload="jQueryChangesInRestaurants()">
-        <ul class="topnav">
-            <li class="right"><a onclick='goHome()'>Logout</a></li>
-        </ul>
-        <div class="container">
-            <div class="form-container">
-                <form class="search-container" onsubmit="event.preventDefault(); onLoadHandler();">
-                    <input type="text" name="search" id="location" placeholder="Search by location">
-                    <div onclick="onLoadHandler()">
-                        <button type="submit">Go</button>
-                    </div>
-    
-                </form>
-    
-                <form name="form2">
-                    <select name="rating" id="selectRating" onChange="onLoadHandler()">
-                        <option value="0">Select Rating</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select>
-                    
-                    <select name="cuisine" id="selectCuisine" onChange="onLoadHandler()">
-                        <option value="0">Select Cuisine</option>
-                        <option value="Indian">Indian</option>
-                        <option value="American">American</option>
-                        <option value="Chinese">Chinese</option>
-                    </select>
-            </div>
+
+<head>
+    <title>Restaurants</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="/static/restaurants.css">
+    <link rel="stylesheet" type="text/css" href="/static/home.css">
+    <link rel="stylesheet" href="/static/jquery-ui.css">
+    <link rel="stylesheet" href="/static/jquery-ui.theme.css">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    <script src="/static/jquery-ui.js"></script>
+
+    <script src="static/js/search.js"></script>
+</head>
+
+<body onload="jQueryChangesInRestaurants()">
+
+    <ul class="topnav">
+        <li class="right"><a onclick='goHome()'>Logout</a></li>
+    </ul>
+
+    <div class="container">
+        <div class="form-container">
+            <form class="search-container" onsubmit="event.preventDefault(); onLoadHandler();">
+                <input type="text" name="search" id="location" placeholder="Search by location">
+                <div onclick="onLoadHandler()">
+                    <button type="submit">Go</button>
+                </div>
+
             </form>
-    
-    
-            <div id="map" style="width:70%;height:400px"></div>
-            <!-- <div id="map" style="width:100%;height:600px"></div> -->
-            <div id="restaurant-list"></div>
+
+            <form name="form2" action="#">
+
+                <select name="rating" id="selectRating" onChange="onLoadHandler()">
+                    <option value="0">Select Rating</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+
+                <select name="cuisine" id="selectCuisine" onChange="onLoadHandler()">
+                    <option value="0">Select Cuisine</option>
+                    <option value="Indian">Indian</option>
+                    <option value="American">American</option>
+                    <option value="Chinese">Chinese</option>
+                </select>
+
+
+            </form>
         </div>
 
-        <script type = "text/javascript">
-            function jQueryChangesInRestaurants() {
-                
-                var availableTags = [
+
+        <div id="map" style="width:73%;height:400px"></div>
+        <!-- <div id="map" style="width:100%;height:600px"></div> -->
+        <div id="restaurant-list"></div>
+    </div>
+
+    <script type="text/javascript">
+
+        function jQueryChangesInRestaurants() {
+
+            //Resizable widget used in Start Theme for Google Maps
+            $("#map").resizable();
+            //$("#tabs").tabs();
+        }
+        document.addEventListener('DOMContentLoaded', function () {
+
+            var availableTags = [
                 "fremont",
                 "san jose"
-                ];
-                //Autocomplete widget in Start Theme
-                $("#location").autocomplete({
-                    source: availableTags
-                });
-                //Button widget used in Start Theme
-                $('a').button();
-                //Selectmenu widget used in Start Theme
-                $("#selectRating").selectmenu();
-                $("#selectCuisine").selectmenu();
-                //Resizable widget used in Start Theme for Google Maps
-                $("#map").resizable();
+            ];
+            //Autocomplete widget in Start Theme
+            $("#location").autocomplete({
+                source: availableTags
+            });
+            //Button widget used in Start Theme
+            $('a').button();
+            //Selectmenu widget used in Start Theme
+            $("#selectRating").selectmenu();
+            $("#selectCuisine").selectmenu();
 
-
-            }
-        </script>
+        });
+    </script>
     <!-- </body> -->
     <!-- <script>
 
@@ -262,8 +273,9 @@
         }
     
       </script> -->
-      <script async defer
-      src="https://maps.googleapis.com/maps/api/js?key=####&callback=initMap">
-      </script>
-    </body>
-    </html>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAX4MnOHKKbsRC7rW1s7G5av1Vxt90hgL0&callback=initMap">
+
+    </script>
+</body>
+
+</html>
