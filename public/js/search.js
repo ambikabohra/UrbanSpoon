@@ -45,7 +45,8 @@
                 appendRestaurants(list, restaurantResponse, location.toLowerCase());
             }
             else{
-                alert("Invalid entry!!");
+                //alert("Invalid entry!!");
+                openDialog();
             }
         }
 

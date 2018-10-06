@@ -107,3 +107,12 @@ body {
     min-width: 200px;
     height: 100px;
 }
+
+#selectable .ui-selecting {
+    background-color: gray;
+}
+
+#selectable .ui-selected {
+    background-color: black;
+    color: white;
+}
