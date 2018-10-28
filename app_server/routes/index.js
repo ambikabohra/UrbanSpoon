@@ -10,6 +10,7 @@
     
     router.get('/', ctrlMain.home);
     router.get('/login', ctrlMain.login);
+    router.get('/signup', ctrlMain.signup);
     router.get('/restaurants', ctrlMain.restaurants);
     
     // router.post('/search-restaurants', ctrlRest.fetchRestaurants);
