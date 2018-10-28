@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html>
+<header>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="/static/login.css">
+    <link rel="stylesheet" type="text/css" href="/static/home.css">
+    <link rel="stylesheet" href="/static/jquery-ui.css">
+    <link rel="stylesheet" href="/static/jquery-ui.theme.css">
+
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+    <script src="/static/jquery-ui.js"></script>
+    <script type="text/javascript"
+            src="js/jquery-ui-lightness/jquery-ui.min.js">
+    </script>
+
+
+</header>
+<body onload = "jQueryChanges()">
+
+<div class="bew">
+    <a href="/">Home</a>
+    <a style="float:right" href="/login">Login</a>
+</div>
+
+
+
+<form id="login_id" name=SignUpForm method="post">
+    <div class="box">
+        <h1>SignUp</h1>
+
+        <!-- <input type="email" name="email" id="email" required class="email" /> -->
+        <div class="form-row">
+            <label class="labl">User Name</label>
+            <input type="text"  pattern="^.+@.+\..{2,4}$" name="username" id="username" class="email" required/>
+        </div>
+
+        <div class="form-row">
+            <label class="labl">Email</label>
+            <input type="text" placeholder="xxxxx@xxxxx.xxx" pattern="^.+@.+\..{2,4}$" name="emailId" id="emailId" class="email" required/>
+        </div>
+
+
+        <!-- <input type="password" name="password" id="password" required class="email" /> -->
+        <div class="form-row">
+            <label class="labl">Password</label>
+            <input type="password" name="password" id="password" class="email" required/>
+        </div>
+
+        <div class="form-row">
+            <label class="labl">Phone Number</label>
+            <input type="text" placeholder="(xxx) xxx-xxxx" pattern="[(][0-9]{3}[)] [0-9]{3}-[0-9]{4}" name="phone" id="phone" class="email" required/>
+        </div>
+
+
+        <input type="button" class="btn" value="SignUp" id="submit" onclick="signUpUser()" />
+    </div>
+</form>
+
+</body>
+
+<script type = "text/javascript">
+    function jQueryChanges()
+    {
+        //Button widget used
+        $('a, .box input[type=button]').button();
+    }
+</script>
+
+<script src="/static/js/signup.js"></script>
+
+</html>
