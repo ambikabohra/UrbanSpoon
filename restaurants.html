@@ -17,7 +17,7 @@
 
     <script src="static/js/search.js"></script>
 
-    <script>
+    <!-- <script>
         $( function() {
           var availableTags = [
             "San Jose",
@@ -36,7 +36,7 @@
             source: availableTags
           });
         } );
-        </script>
+        </script> -->
  
         <script>
             $( function() {
@@ -103,15 +103,35 @@
                     <option value="Indian">Indian</option>
                     <option value="American">American</option>
                     <option value="Chinese">Chinese</option>
+                    <option value="Vietnamese">Vietnamese</option>
+                    <option value="Spanish"> Spanish</option>
+                    <option value="Italian">Italian</option>
+                    <option value="Asian"> Asian</option>
+                    <option value="Thai"> Thai</option>
+                    <option value="Brazilian"> Brazilian</option>
+                    <option value="Caribbean">Caribbean</option>
+                    <option value="Hawaiian">Hawaiian</option>
+                    <option value="Tapas">Tapas</option>
+                    <option value="German">German</option>
+                    <option value="Irish"> Irish</option>
+                    <option value="Turkish">Turkish</option>
+                    <option value="Mediterranean">Mediterranean</option>
+                    <option value="Southern"> Southern</option>
+                    <option value="Cajun"> Cajun</option>
+                    <option value="Soul Food"> Soul Food</option>                   
+                    <option value="Pub Food"> Pub Food</option>
+                    <!-- <option value="New American">New American</option>
+                    <option value="Latin American"> Latin American</option> -->
+                    <option value="Vegetarian">Vegetarian</option>  
                 </select>
 
-                <button id="opener" style="float: right" >Help</button>
+                <!-- <button id="opener" style="float: right" >Help</button>
                 <div id="dialog" title="Directions " >
                         <h4>Try below combinations</h4>
                         <li>Location: “fremont” or “san jose”</li>
                         <li>Rating: 4 or 5</li>
                         <li>Cuisine: American, Indian, Chinese</li>
-                </div>   
+                </div>    -->
 
             </form>
         </div>
@@ -151,9 +171,13 @@
         document.addEventListener('DOMContentLoaded', function () {
 
             var availableTags = [
-                "fremont",
-                "san jose"
-            ];
+            "Orlando",
+            "Albany",
+            "Athens",
+            "Princeton",
+            "Winchester Bay",
+            "Columbus",
+          ];
             //Autocomplete widget in Start Theme
             $("#location").autocomplete({
                 source: availableTags
@@ -167,7 +191,7 @@
         });
     </script>
   
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=###Your Key ###&callback=initMap">
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=##Your_KEY##&callback=initMap">
 
     </script>
 </body>

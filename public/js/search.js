@@ -1,19 +1,15 @@
 
         var map;
-        var restaurantResponse = null;
         var markers = [];
-        var seen = false;
 
         function onLoadHandler() {
-                clearMarkers()
+                clearMarkers();
                 const list = document.getElementById("restaurant-list");
                 const location = document.getElementById("location").value;
                 console.log("given locations is " +location);
                 const data = {
                     location: location
                 };
-                
-                if(seen == false) { //if page loads first time
                     
                 fetch("/search-restaurants", {
                     method : "POST",
@@ -26,7 +22,6 @@
                 .then(response => {
                     if (Array.isArray(response.restaurants)) {
                         console.log('Success:', JSON.stringify(response));
-                        restaurantResponse = response.restaurants; //save the json response as a local variable
                         console.log(restaurantResponse[0]);
                         appendRestaurants(list, response.restaurants, location);
                         seen = true;
@@ -39,45 +34,41 @@
                 }).catch(error => {
                     console.error('Error:', error)
                 });
-             }  
-            //if data is saved already
-            else if(  location.toLowerCase() == "san jose" || location.toLowerCase() == "fremont" || location.toLowerCase() == ""){
-                appendRestaurants(list, restaurantResponse, location.toLowerCase());
-            }
-            else{
-                //alert("Invalid entry!!");
-                openDialog();
-            }
         }
 
         function appendRestaurants(node, array, location) {
             const rating = parseFloat(document.getElementById("selectRating").value);
-            const cuisine = (document.getElementById("selectCuisine").value);
+            const cuisine = (document.getElementById("selectCuisine").value).toLowerCase();
+            console.log("array is");
+             console.log(array[0]);
                 while (node.firstChild) {
                     node.removeChild(node.firstChild);
                 }
                 let nodeTemplate = "";
                 
                 array.forEach(item => {
-                    var address = item.address.toLowerCase();
+                    var address = item.Address.toLowerCase();
+                    var itemRating = parseFloat(item.rating);
+                    var cuisineList = (item.Cuisines.toLowerCase()).split(", "); //array of cuisines
+                     console.log(cuisineList);
                     
-                    if( (address.includes(location) || location == "")
-                    && ( (item.rating >= rating && item.rating < rating+1 )|| rating == 0)
-                    && (item.cuisine == cuisine || cuisine == "0")
+                    // if( (address.includes(location) || location == "")
+                    if(( (itemRating >= rating && itemRating < rating+1 )|| rating == 0)
+                    && (cuisineList.indexOf( cuisine ) != -1 || cuisine == "0")
                 
                 ) { //if location is matched 
-                   
-                        addMarker(item.location, item.name)
+                        console.log(item.name);
+                        addMarker(item.Longitude, item.Latitude , item.name);
+
                         nodeTemplate = nodeTemplate + `<div class="restaurant">
-                        <div class="img-container">
+                        <!--<div class="img-container">
                             <img src=${item.image}></img>
-                        </div>
+                        </div>-->
 
                         <div class="data-container">
-                            <div>${item.name}</div>
-                            <div>${item.address}</div>
-                            <div>${item.rating}</div>
-                            <div>${item.cuisine}</div>
+                            <div><h4>${item.name}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${item.rating} </h4></div>
+                            <div> ${item.Cuisines}</div>
+                            <div> Address: ${item.Address}</div>       
                         </div>
                         </div>`;
                     }
@@ -112,8 +103,8 @@
         function initMap() {
             
           map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 11,
-            center: new google.maps.LatLng(37.335480,-121.893028),
+            zoom: 5,
+            center: new google.maps.LatLng(28.5383,-81.3792),
             mapTypeId: google.maps.MapTypeId.ROADMAP,
             scrollwheel: false
           });
@@ -126,11 +117,11 @@
         }
 
         // Adds a marker to the map and push to the array.
-        function addMarker(location, restaurantName){
-            var rs = location.split(",");
-            console.log(parseFloat(rs[0]));
-            var myLatLng = {lat: parseFloat(rs[0]), lng: parseFloat(rs[1])};
-            
+        function addMarker(longitude, latitude, restaurantName){
+            // var rs = location.split(",");
+            // console.log(parseFloat(rs[0]));
+            // var myLatLng = {lat: parseFloat(rs[0]), lng: parseFloat(rs[1])};
+            var myLatLng = {lat: latitude, lng: longitude};
             var marker = new google.maps.Marker({
             position: myLatLng,
             // animation:google.maps.Animation.BOUNCE,

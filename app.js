@@ -6,6 +6,11 @@ var lineReader = require('line-reader');
 var index = require('./app_server/routes/index');
 var app = express();
 
+// mongodb access
+var mongo = require('mongodb');
+var monk = require('monk');
+var db = monk('localhost:27017/zomato'); //db name
+
 //View engine setup
 app.set('views', path.join(__dirname, 'app_server', 'views'));
 app.set('view engine', 'jade');
@@ -18,6 +23,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({ resave: true,
     saveUninitialized: true,
     secret: 'uwotm8' }));
+
+app.use(function(req, res, next)
+{
+     req.db = db;
+     next();
+});
 
 app.use('/', index);
 
