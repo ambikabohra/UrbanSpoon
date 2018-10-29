@@ -48,7 +48,7 @@ function signUpUser() {
         phone:phone
     };
 
-    fetch("/signup", {
+    fetch("/signupUser", {
         method : "POST",
         body: JSON.stringify(data),
         headers:{

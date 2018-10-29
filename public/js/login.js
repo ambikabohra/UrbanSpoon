@@ -60,12 +60,6 @@ function validateUser() {
         alert("Whitespaces are not allowed!");
     }
 
-    if (username == "uiland@gmail.com" && password == "uiland") {
-        alert("Login successful");
-        window.location = "restaurants";
-        return false;
-    }
-
     if (username == "") {
         window.alert("Please enter your email id");
         username.focus();
@@ -78,8 +72,34 @@ function validateUser() {
         return false;
     }
 
-    else {
-        window.alert("Wrong Credentials");
-    }
-    return false;
+
+    const data = {
+        username: username,
+        password:password
+    };
+
+    fetch("/loginValidate", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers:{
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(r => r.json())
+    .then(response => {
+        if (response.message === "Success") {
+            alert("Login successful");
+            window.location = "restaurants";
+            return false;   
+        }else if(response.message === "Invalid"){
+            window.alert("Invalid Credentials/Password");
+        }
+        else {
+            window.alert("Unable to get User details!");
+        }
+        console.log('Success:', JSON.stringify(response));
+    }).catch(error => {
+        console.error('Error:', error)
+    });
+   
 }
