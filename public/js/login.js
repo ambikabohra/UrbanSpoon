@@ -78,12 +78,14 @@ function validateUser() {
         return false;
     }
 
+
     const data = {
-        "username": username,
-        "password": password
+        username: username,
+        password:password
     };
-    fetch("/login", {
-        method : "POST",
+
+    fetch("/loginValidate", {
+        method: "POST",
         body: JSON.stringify(data),
         headers:{
             'Content-Type': 'application/json'
@@ -92,20 +94,30 @@ function validateUser() {
     .then(r => r.json())
     .then(response => {
         if (response.message === "Success") {
-            window.location = "/restaurants";
+        //     window.location = "/restaurants";
 
+        // }
+        // else {
+        //     window.alert(response.message);
+            alert("Login successful");
+            window.location = "restaurants";
+            return false;   
+        }else if(response.message === "Invalid"){
+            window.alert("Invalid Credentials/Password");
         }
         else {
-            window.alert(response.message);
+            window.alert("Unable to get User details!");
         }
         console.log('Success:', JSON.stringify(response));
     }).catch(error => {
         console.error('Error:', error)
     });
 
+    /*
     // else {
     //     window.alert("Wrong Credentials");
     // }
     
     return false;
+   */
 }

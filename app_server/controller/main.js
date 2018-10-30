@@ -31,6 +31,11 @@ exports.login = function(request, result)
     sendPage('login.html', result);
 };
 
+exports.signup = function(request, result)
+{
+    sendPage('signup.html', result);
+};
+
 exports.restaurants = function(request, result) 
 {
     sendPage('restaurants.html', result);
