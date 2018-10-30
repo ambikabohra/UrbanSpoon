@@ -32,7 +32,7 @@ exports.postLogin = function postLogin(req,res){
 
 exports.postLogout = function postLogout(req,res){
     
-    //req.session.user = null;
+    req.session.user = null;
     res.status(200).send({"message":"Success"});
 
 }

@@ -60,6 +60,12 @@ function validateUser() {
         alert("Whitespaces are not allowed!");
     }
 
+    // if (username == "uiland@gmail.com" && password == "uiland") {
+    //     alert("Login successful");
+    //     window.location = "restaurants";
+    //     return false;
+    // }
+
     if (username == "") {
         window.alert("Please enter your email id");
         username.focus();
@@ -88,6 +94,11 @@ function validateUser() {
     .then(r => r.json())
     .then(response => {
         if (response.message === "Success") {
+        //     window.location = "/restaurants";
+
+        // }
+        // else {
+        //     window.alert(response.message);
             alert("Login successful");
             window.location = "restaurants";
             return false;   
@@ -101,5 +112,12 @@ function validateUser() {
     }).catch(error => {
         console.error('Error:', error)
     });
-   
+
+    /*
+    // else {
+    //     window.alert("Wrong Credentials");
+    // }
+    
+    return false;
+   */
 }
