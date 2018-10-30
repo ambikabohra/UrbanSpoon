@@ -22,122 +22,82 @@ function onLoadHandler() {
         .then(response => {
             if (Array.isArray(response.restaurants)) {
                 console.log('Success:', JSON.stringify(response));
-                console.log(restaurantResponse[0]);
                 appendRestaurants(list, response.restaurants, location);
                 seen = true;
             }
-            else if (response.message === "Please enter valid location!") {
+            else if(response.message === "Please enter valid location!"){
                 while (list.firstChild) {
-                    list.removeChild(list.firstChild);
-                }
-
-                let nodeTemplate = "";
-                
-                array.forEach(item => {
-                    var address = item.Address.toLowerCase();
-                    var itemRating = parseFloat(item.rating);
-                    var cuisineList = (item.Cuisines.toLowerCase()).split(", "); //array of cuisines
-                     console.log(cuisineList);
-                    
-                    // if( (address.includes(location) || location == "")
-                    if(( (itemRating >= rating && itemRating < rating+1 )|| rating == 0)
-                    && (cuisineList.indexOf( cuisine ) != -1 || cuisine == "0")
-                
-                ) { //if location is matched 
-                        console.log(item.Name);
-                        addMarker(item.Longitude, item.Latitude , item.Name);
-
-                        nodeTemplate = nodeTemplate + `<div class="restaurant">
+                list.removeChild(list.firstChild);
             }
-        }).catch(error => {
-            console.error('Error:', error)
-        });
-}
-
-function appendRestaurants(node, array, location) {
-    const rating = parseFloat(document.getElementById("selectRating").value);
-    const cuisine = (document.getElementById("selectCuisine").value).toLowerCase();
-    console.log("array is");
-    console.log(array[0]);
-    while (node.firstChild) {
-        node.removeChild(node.firstChild);
-    }
-    let nodeTemplate = "";
-
-    array.forEach(item => {
-        var address = item.Address.toLowerCase();
-        var itemRating = parseFloat(item.rating);
-        var cuisineList = (item.Cuisines.toLowerCase()).split(", "); //array of cuisines
-        console.log(cuisineList);
-
-        // if( (address.includes(location) || location == "")
-        if (((itemRating >= rating && itemRating < rating + 1) || rating == 0)
-            && (cuisineList.indexOf(cuisine) != -1 || cuisine == "0")
-
-        ) { //if location is matched 
-            console.log(item.name);
-            addMarker(item.Longitude, item.Latitude, item.name);
-
-            nodeTemplate = nodeTemplate + `<div class="restaurant">
-                        <!--<div class="img-container">
-                            <img src=${item.image}></img>
-                        </div>-->
-
-                        <div class="data-container">
-                            <div><h4>${item.Name}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${item.rating} </h4></div>
-                            <div> ${item.Cuisines}</div>
-                            <div> Address: ${item.Address}</div>       
-                        </div>
-                        </div>`;
         }
+    }).catch(error => {
+        console.error('Error:', error)
     });
-    node.insertAdjacentHTML('beforeend', nodeTemplate);
 }
 
-function goHome() {
 
-    fetch("/logout", {
-        method: "POST",
-        headers: {
-            'Content-Type': 'application/json'
+                function appendRestaurants(node, array, location) {
+                    const rating = parseFloat(document.getElementById("selectRating").value);
+                    const cuisine = (document.getElementById("selectCuisine").value).toLowerCase();
+                    console.log("array is");
+                     console.log(array[0]);
+                        while (node.firstChild) {
+                            node.removeChild(node.firstChild);
+                        }
+                        let nodeTemplate = "";
+                        
+                        array.forEach(item => {
+                            var address = item.Address.toLowerCase();
+                            var itemRating = parseFloat(item.rating);
+                            var cuisineList = (item.Cuisines.toLowerCase()).split(", "); //array of cuisines
+                             console.log(cuisineList);
+                            
+                            // if( (address.includes(location) || location == "")
+                            if(( (itemRating >= rating && itemRating < rating+1 )|| rating == 0)
+                            && (cuisineList.indexOf( cuisine ) != -1 || cuisine == "0")
+                        
+                        ) { //if location is matched 
+                                // console.log(item.name);
+                                addMarker(item.Longitude, item.Latitude , item.Name);
+        
+                                nodeTemplate = nodeTemplate + `<div class="restaurant">
+                                <!--<div class="img-container">
+                                    <img src=${item.image}></img>
+                                </div>-->
+        
+                                <div class="data-container">
+                                    <div><h4>${item.Name}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${item.rating} </h4></div>
+                                    <div> ${item.Cuisines}</div>
+                                    <div> Address: ${item.Address}</div>       
+                                </div>
+                                </div>`;
+                            }
+                        });
+                        node.insertAdjacentHTML('beforeend', nodeTemplate);
+                    }
+
+            function goHome() {
+
+            fetch("/logout", {
+                method : "POST",
+                headers:{
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(r => r.json())
+            .then(response => {
+                if (response.message === "Success") {
+                    window.location = "/";
+
+                }
+                else {
+                    window.alert("Unable to Logout!");
+                }
+                console.log('Success:', JSON.stringify(response));
+            }).catch(error => {
+                console.error('Error:', error)
+            });
         }
-    })
-        .then(r => r.json())
-        .then(response => {
-            if (response.message === "Success") {
-                window.location = "/";
-
-            }
-            else {
-                window.alert("Unable to Logout!");
-            }
-            console.log('Success:', JSON.stringify(response));
-        }).catch(error => {
-            console.error('Error:', error)
-        });
-}
-
-// function yourProfile() {
-//     fetch("/profile", {
-//         method : "GET",
-//         headers:{
-//             'Content-Type': 'application/json'
-//         }
-//     })
-//     .then(r => r.json())
-//     .then(response => {
-//         if (response.message === "Success") {
-//             window.location = "/";
-
-//         }
-//         else {
-//             window.alert("Unable to go to your profile page!");
-//         }
-//         console.log('Success:', JSON.stringify(response));
-//     }).catch(error => {
-//         console.error('Error:', error)
-//     });
-// }
 
 //intiate map
 function initMap() {
@@ -213,4 +173,28 @@ window.eqfeed_callback = function (results) {
         });
     }
 }
+
+
+
+// function yourProfile() {
+//     fetch("/profile", {
+//         method : "GET",
+//         headers:{
+//             'Content-Type': 'application/json'
+//         }
+//     })
+//     .then(r => r.json())
+//     .then(response => {
+//         if (response.message === "Success") {
+//             window.location = "/";
+
+//         }
+//         else {
+//             window.alert("Unable to go to your profile page!");
+//         }
+//         console.log('Success:', JSON.stringify(response));
+//     }).catch(error => {
+//         console.error('Error:', error)
+//     });
+// }
 

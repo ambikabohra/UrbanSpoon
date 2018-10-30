@@ -6,7 +6,7 @@ module.exports.fetch_restaurantList = function(req, res) 
      console.log(location)
     if(location === ""){ // location is not specified , display all
 
-    // took only 4 cities
+    // took only 5 cities
     collection.find({ Country_Code: 216, City: { $in: [ "Orlando", "Princeton", "Columbus",  "Albany",
     "Athens" ] } }, 
     { projection: { name: 1, City: 1, Address: 1, Longitude: 1, Latitude: 1, Cuisines: 1, rating: 1, price_range: 1, avg_cost: 1, Votes: 1  } }, 
@@ -17,7 +17,6 @@ module.exports.fetch_restaurantList = function(req, res) 
                                 restaurantsData = {
                                      "restaurants": docs
                                 };
-                                console.log(restaurantsData.restaurants[0]);
                                 db.close();
                                 res.status(200).send(restaurantsData);
                                 
@@ -25,7 +24,6 @@ module.exports.fetch_restaurantList = function(req, res) 
     }
     
     else{ //for searching documents based on location or city
-        console.log("inside else");
         collection.find({ Country_Code: 216, City: location }, 
         { projection: { name: 1, City: 1, Address: 1, Longitude: 1, Latitude: 1, Cuisines: 1, rating: 1, price_range: 1, avg_cost: 1, Votes: 1  } }, 
                                 function(err, docs)
@@ -34,7 +32,6 @@ module.exports.fetch_restaurantList = function(req, res) 
                                     restaurantsData = {
                                          "restaurants": docs
                                     };
-                                    console.log(restaurantsData.restaurants[0]);
                                     db.close();
                                     res.status(200).send(restaurantsData);
                                 });
