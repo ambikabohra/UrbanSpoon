@@ -1,40 +1,4 @@
-<<<<<<< HEAD
 
-        var map;
-        var markers = [];
-
-        function onLoadHandler() {
-                clearMarkers();
-                const list = document.getElementById("restaurant-list");
-                const location = document.getElementById("location").value;
-                console.log("given locations is " +location);
-                const data = {
-                    location: location
-                };
-                    
-                fetch("/search-restaurants", {
-                    method : "POST",
-                    body: JSON.stringify(data),
-                    headers:{
-                        'Content-Type': 'application/json'
-                    }
-                })
-                .then(r => r.json())
-                .then(response => {
-                    if (Array.isArray(response.restaurants)) {
-                        console.log('Success:', JSON.stringify(response));  
-                        appendRestaurants(list, response.restaurants, location);
-                        seen = true;
-                    }
-                    else if(response.message === "Please enter valid location!"){
-                            while (list.firstChild) {
-                            list.removeChild(list.firstChild);
-                        }
-                    }
-                }).catch(error => {
-                    console.error('Error:', error)
-                });
-=======
 var map;
 var markers = [];
 
@@ -52,7 +16,6 @@ function onLoadHandler() {
         body: JSON.stringify(data),
         headers: {
             'Content-Type': 'application/json'
->>>>>>> a89a0767b2c2aedc577032849cede5f22eca2d66
         }
     })
         .then(r => r.json())
@@ -67,7 +30,7 @@ function onLoadHandler() {
                 while (list.firstChild) {
                     list.removeChild(list.firstChild);
                 }
-<<<<<<< HEAD
+
                 let nodeTemplate = "";
                 
                 array.forEach(item => {
@@ -85,7 +48,6 @@ function onLoadHandler() {
                         addMarker(item.Longitude, item.Latitude , item.Name);
 
                         nodeTemplate = nodeTemplate + `<div class="restaurant">
-=======
             }
         }).catch(error => {
             console.error('Error:', error)
@@ -117,7 +79,6 @@ function appendRestaurants(node, array, location) {
             addMarker(item.Longitude, item.Latitude, item.name);
 
             nodeTemplate = nodeTemplate + `<div class="restaurant">
->>>>>>> a89a0767b2c2aedc577032849cede5f22eca2d66
                         <!--<div class="img-container">
                             <img src=${item.image}></img>
                         </div>-->
