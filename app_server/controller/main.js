@@ -42,6 +42,11 @@ exports.restaurants = function(request, result)
     sendPage('restaurants.html', result);
 };
 
+exports.profile = function(request, result) 
+{
+    sendPage('profile.html', result);
+};
+
 // function sendBody(text, result)
 // {
 //     var html = '<!DOCTYPE html>\n'
