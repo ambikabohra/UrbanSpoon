@@ -21,8 +21,7 @@
                 .then(r => r.json())
                 .then(response => {
                     if (Array.isArray(response.restaurants)) {
-                        console.log('Success:', JSON.stringify(response));
-                        console.log(restaurantResponse[0]);
+                        console.log('Success:', JSON.stringify(response));  
                         appendRestaurants(list, response.restaurants, location);
                         seen = true;
                     }
@@ -57,8 +56,8 @@
                     && (cuisineList.indexOf( cuisine ) != -1 || cuisine == "0")
                 
                 ) { //if location is matched 
-                        console.log(item.name);
-                        addMarker(item.Longitude, item.Latitude , item.name);
+                        console.log(item.Name);
+                        addMarker(item.Longitude, item.Latitude , item.Name);
 
                         nodeTemplate = nodeTemplate + `<div class="restaurant">
                         <!--<div class="img-container">
@@ -66,7 +65,7 @@
                         </div>-->
 
                         <div class="data-container">
-                            <div><h4>${item.name}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${item.rating} </h4></div>
+                            <div><h4>${item.Name}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${item.rating} </h4></div>
                             <div> ${item.Cuisines}</div>
                             <div> Address: ${item.Address}</div>       
                         </div>

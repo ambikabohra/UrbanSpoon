@@ -38,6 +38,7 @@ exports.signup = function(request, result)
 
 exports.restaurants = function(request, result) 
 {
+    console.log("hello");
     sendPage('restaurants.html', result);
 };
 

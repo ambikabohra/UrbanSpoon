@@ -3,7 +3,7 @@ module.exports.fetch_restaurantList = function(req, res) 
     var location= (req.body.location).trim();
     var db = req.db;
     var collection = db.get('restaurants'); //collection name, in which restaurant dataset is stored
-
+     console.log(location)
     if(location === ""){ // location is not specified , display all
 
     // took only 4 cities
@@ -17,6 +17,7 @@ module.exports.fetch_restaurantList = function(req, res) 
                                 restaurantsData = {
                                      "restaurants": docs
                                 };
+                                console.log(restaurantsData.restaurants[0]);
                                 db.close();
                                 res.status(200).send(restaurantsData);
                                 
