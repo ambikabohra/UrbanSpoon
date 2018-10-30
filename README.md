@@ -25,7 +25,9 @@
     db.restaurants.update( {} , { $rename : {'Country Code' : 'Country_Code' }}, true, true ); 
     
   7. Run the application
+  
         npm install
+  
         node app.js
 
 
