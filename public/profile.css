@@ -22,3 +22,8 @@ form {
 .email {
     color: black;
 }
+
+/* For diabling email field in your profile */
+.disabled {
+    cursor: not-allowed;
+}
