@@ -54,11 +54,11 @@ function appendRestaurants(node, array, location) {
     var cuisineList = (item.Cuisines.toLowerCase()).split(", "); //array of cuisines
 
     // if(seen == false){
-        if(item.City == 'Orlando' )
+        if(item.City == 'Orlando' && !seriesDataOrlando.includes(item.Name))
         { 
            seriesDataOrlando.push([item.Name, item.rating]);
         }
-        else if(item.City == 'Albany')
+        else if(item.City == 'Albany' && !seriesDataAlbany.includes(item.Name))
         { 
             seriesDataAlbany.push([item.Name, item.rating]);
         }
