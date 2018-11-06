@@ -456,7 +456,7 @@ function makeGraph2(){
         },
 
         title: {
-            text: 'Restaurants Count - Average cost for Two'
+            text: 'Restaurant Count - Average cost for Two'
         },
 
         legend: {
@@ -484,7 +484,7 @@ function makeGraph2(){
         yAxis: {
             allowDecimals: false,
             title: {
-                text: 'Count'
+                text: 'Restaurant Count'
             }
         },
         labels: {
