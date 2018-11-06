@@ -7,7 +7,13 @@
     <link rel="stylesheet" type="text/css" href="/static/restaurants.css">
     <link rel="stylesheet" type="text/css" href="/static/home.css">
     <link rel="stylesheet" href="/static/jquery-ui.css">
-    <link rel="stylesheet" href="/static/jquery-ui.theme.css">
+    
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/data.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/js/themes/sand-signika.js"></script>
+
     <!-- <link rel="stylesheet" href="/static/widgets.css"> -->
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
@@ -17,7 +23,7 @@
 
     <script src="static/js/search.js"></script>
  
-        <script>
+        <!-- <script>
             $( function() {
               $( "#accordion" ).accordion({
                 
@@ -46,7 +52,8 @@
       $( "#dialog" ).dialog( "open" );
     });
   } );
-  </script>
+  </script> -->
+
 
 </head>
 
@@ -136,8 +143,34 @@
                 <div>
                     <img src="/static/images/line-chart.png"></img></div>
         </div> -->
-        <div id="restaurant-list"></div>
+
+       
+        <!-- <div id="container" style="width: 25%; height: 400px; " ></div>
+        <div id="container" style="width: 25%; height: 400px; " ></div>
+        <div id="container" style="width: 25%; height: 400px; " ></div>
+        <div id="container" style="width: 25%; height: 400px; " ></div> -->
+
+        <div class="row" style="width:73%;height:600px">
+                <div id="container" class="column" style="background-color:#aaa;width: 50%;float: left;height: 300px;">
+                </div>
+                <div id="container2" class="column"  style="background-color:#bbb;width: 50%;float: left;height: 300px;">
+                  <h2>Chart 2</h2>
+                </div>
+                <div id="container3" class="column" style="background-color:#ccc;width: 50%;float: left;height: 300px;">
+                  <h2>Chart 3</h2>
+                </div>
+                <div id="container4" class="column" style="background-color:#ddd;width: 50%;float: left;height: 300px;">
+                  <h2>Chart 4</h2>
+                </div>
+              </div>
+              
+    
+    
+            <div id="restaurant-list"></div> 
+     
+       
     </div>
+
 
     <script type="text/javascript">
 
