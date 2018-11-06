@@ -6,6 +6,8 @@ var seriesDataOrlando = [];
 var seriesDataAlbany = [];
 var seriesCuisiniesOrlando= [];
 var seriesCuisiniesAlabany= [];
+var seriesAvgCostOrlando=[];
+var seriesAvgCostAlbany=[];
 var seen = false;
 
 function onLoadHandler() {
@@ -27,7 +29,8 @@ function onLoadHandler() {
         .then(r => r.json())
         .then(response => {
             if (Array.isArray(response.restaurants)) {
-                //console.log('Success:', JSON.stringify(response));
+                console.log("inside search.js");
+                console.log('Success:', JSON.stringify(response));
                 restaurantResponse = response.restaurants ;
                 appendRestaurants(list, response.restaurants, location);
             }
@@ -51,11 +54,14 @@ function appendRestaurants(node, array, location) {
     let nodeTemplate = "";
     var orlandoCuisines = {};
     var AlabanyCuisines = {};
+    var avgCostOrlando = {};
+    var avgCostAlbany = {};
 
     array.forEach(item => {
     var address = item.Address.toLowerCase();
     var itemRating = parseFloat(item.rating);
     var cuisineList = (item.Cuisines.toLowerCase()).split(", "); //array of cuisines
+
 
     // if(seen == false){
         if(item.City == 'Orlando' && !seriesDataOrlando.includes(item.Name))
@@ -69,6 +75,27 @@ function appendRestaurants(node, array, location) {
     //     seen = true;
     //  }
 
+        if(item.City == 'Orlando'){
+            if(item.average_cost != "0") {
+            if (item.average_cost in avgCostOrlando) {
+                avgCostOrlando[item.average_cost] = avgCostOrlando[item.average_cost] + 1;
+            } else {
+                avgCostOrlando[item.average_cost] = 1;
+            }
+        }
+            
+        }
+
+        if(item.City == 'Albany'){
+            if(item.average_cost != "0") {
+            if (item.average_cost in avgCostAlbany) {
+                avgCostAlbany[item.average_cost] = avgCostAlbany[item.average_cost] + 1;
+            } else {
+                avgCostAlbany[item.average_cost] = 1;
+            }
+        }
+            
+        }
 
         if(item.City == 'Orlando'){
             var i;
@@ -116,6 +143,33 @@ function appendRestaurants(node, array, location) {
                             }
                         });
 
+    // for (var key in avgCostOrlando){
+    //     seriesAvgCostOrlando.push([key, avgCostOrlando[key]]);
+    // }
+    // for (var key in avgCostAlbany){
+    //     seriesAvgCostAlbany.push([key, avgCostAlbany[key]]);
+    // }
+    // const sortFn = (a, b) => a[0].key - b[0].key;
+    // seriesAvgCostOrlando.sort(sortFn);
+    // seriesAvgCostAlbany.sort(sortFn);
+    
+    let arr = [5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100];
+    arr = arr.filter(key => key in avgCostOrlando || key in avgCostAlbany);
+    seriesAvgCostOrlando = arr.map(key => {
+        if (key in avgCostOrlando) {
+            return [key, avgCostOrlando[key]];
+        } else {
+            return [key, 0];
+        }
+    })
+    seriesAvgCostAlbany = arr.map(key => {
+        if (key in avgCostAlbany) {
+            return [key, avgCostAlbany[key]];
+        } else {
+            return [key, 0];
+        }
+    })
+
     for (var key in orlandoCuisines){
         seriesCuisiniesOrlando.push([key, orlandoCuisines[key]]);
     }
@@ -126,6 +180,7 @@ function appendRestaurants(node, array, location) {
         node.insertAdjacentHTML('beforeend', nodeTemplate);
         // makeGraphs(seriesData); //call to highcharts
         makeGraphs();
+        makeGraph2();
         makeGraph4();
     }
 
@@ -356,6 +411,111 @@ window.eqfeed_callback = function (results) {
     }
     }); 
 };
+
+function makeGraph2(){
+    var chart = Highcharts.chart({
+        chart: {
+            renderTo: 'container2',
+            type: 'line'
+        },
+
+        title: {
+            text: 'Restaurants Count - Average cost for Two'
+        },
+
+        legend: {
+            align: 'right',
+            verticalAlign: 'middle',
+            layout: 'vertical'
+        },
+
+        rangeSelector: {
+            selected: 4
+        },
+
+        xAxis: {
+            minPadding: 0.05,
+            maxPadding: 0.05,
+            type: 'series',
+            //allowDecimals: false,
+            title: {
+                text: 'Average Cost for Two People                      '
+            },
+            labels: {
+                x: -10
+             }
+        },
+        yAxis: {
+            allowDecimals: false,
+            title: {
+                text: 'Count'
+            }
+        },
+        labels: {
+            formatter: function () {
+                return (this.value );
+            }
+        },
+        plotOptions: {
+            series: {
+                dataLabels: {
+                    enabled: true,
+                    format: '{point.label}'
+                },
+                tooltip: {
+                    formatter: function () {
+                        return '<b>' +'</b><br/>' +
+                            + this.point.y ;
+                    }
+                }
+            },
+            spline: {
+                marker: {
+                    enabled: true
+                }
+            }
+        },
+
+        series: [{
+            name: 'Orlando',
+            data: seriesAvgCostOrlando
+        }, {
+            name: 'Albany',
+            data: seriesAvgCostAlbany
+        }],
+        responsive: {
+            rules: [{
+                condition: {
+                    maxWidth: 500
+                },
+                chartOptions: {
+                    legend: {
+                        align: 'center',
+                        verticalAlign: 'bottom',
+                        layout: 'horizontal'
+                    },
+                    yAxis: {
+                        labels: {
+                            align: 'left',
+                            x: 0,
+                            y: -5
+                        },
+                        title: {
+                            text: null
+                        }
+                    },
+                    subtitle: {
+                        text: null
+                    },
+                    credits: {
+                        enabled: false
+                    }
+                }
+            }]
+        }
+    });
+};
+
 
 
 function makeGraph4(){
