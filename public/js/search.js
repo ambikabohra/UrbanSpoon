@@ -6,6 +6,8 @@ var seriesDataOrlando = [];
 var seriesDataAlbany = [];
 var seriesCuisiniesOrlando= [];
 var seriesCuisiniesAlabany= [];
+var seriesRatingsOrlando=[];
+var seriesRatingsAlbany=[];
 var seen = false;
 
 function onLoadHandler() {
@@ -51,12 +53,14 @@ function appendRestaurants(node, array, location) {
     let nodeTemplate = "";
     var orlandoCuisines = {};
     var AlabanyCuisines = {};
+    var orlandoRatings = {};
+    var AlabanyRatings = {};
 
     array.forEach(item => {
     var address = item.Address.toLowerCase();
     var itemRating = parseFloat(item.rating);
     var cuisineList = (item.Cuisines.toLowerCase()).split(", "); //array of cuisines
-
+    var ratingList = (item.Rating_text.toLowerCase()).split(", "); //array of RatingList
     // if(seen == false){
         if(item.City == 'Orlando' && !seriesDataOrlando.includes(item.Name))
         {
@@ -66,10 +70,35 @@ function appendRestaurants(node, array, location) {
         {
             seriesDataAlbany.push([item.Name, item.rating]);
         }
-    //     seen = true;
-    //  }
 
+//Rating list populate
+        if(item.City == 'Orlando'){
+            var i;
+            for (i = 0; i < ratingList.length; i++) {
+                if(ratingList[i].trim()!="") {
+                    if (ratingList[i] in orlandoRatings) {
+                        orlandoRatings[ratingList[i]] = orlandoRatings[ratingList[i]] + 1;
+                    } else {
+                        orlandoRatings[ratingList[i]] = 1;
+                    }
+                }
+            }
 
+        }else if(item.City == 'Albany'){
+            var i;
+            for (i = 0; i < ratingList.length; i++) {
+                if(ratingList[i].trim()!="") {
+                    if (ratingList[i].trim() in AlabanyRatings) {
+                        AlabanyRatings[ratingList[i]] = AlabanyRatings[ratingList[i]] + 1;
+                    } else {
+                        AlabanyRatings[ratingList[i]] = 1;
+                    }
+                }
+            }
+
+        }
+        
+//cuisineList populate
         if(item.City == 'Orlando'){
             var i;
             for (i = 0; i < cuisineList.length; i++) {
@@ -123,10 +152,18 @@ function appendRestaurants(node, array, location) {
         seriesCuisiniesAlabany.push([key, AlabanyCuisines[key]]);
     }
 
+    for (var key in orlandoRatings){
+        seriesRatingsOrlando.push([key, orlandoRatings[key]]);
+    }
+    for (var key in AlabanyRatings){
+        seriesRatingsAlbany.push([key, AlabanyRatings[key]]);
+    }
+
         node.insertAdjacentHTML('beforeend', nodeTemplate);
         // makeGraphs(seriesData); //call to highcharts
         makeGraphs();
         makeGraph4();
+        makeGraph3();
     }
 
             function goHome() {
@@ -427,6 +464,111 @@ function makeGraph4(){
         }, {
             name: 'Albany',
             data: seriesCuisiniesAlabany
+        }],
+        responsive: {
+            rules: [{
+                condition: {
+                    maxWidth: 500
+                },
+                chartOptions: {
+                    legend: {
+                        align: 'center',
+                        verticalAlign: 'bottom',
+                        layout: 'horizontal'
+                    },
+                    yAxis: {
+                        labels: {
+                            align: 'left',
+                            x: 0,
+                            y: -5
+                        },
+                        title: {
+                            text: null
+                        }
+                    },
+                    subtitle: {
+                        text: null
+                    },
+                    credits: {
+                        enabled: false
+                    }
+                }
+            }]
+        }
+    });
+};
+
+
+
+function makeGraph3(){
+    var chart = Highcharts.chart({
+        chart: {
+            renderTo: 'container3',
+            type: 'column'
+        },
+
+        title: {
+            text: 'Restaurants Rating Count'
+        },
+
+        legend: {
+            align: 'right',
+            verticalAlign: 'middle',
+            layout: 'vertical'
+        },
+
+        rangeSelector: {
+            selected: 4
+        },
+
+        xAxis: {
+            minPadding: 0.05,
+            maxPadding: 0.05,
+            type: 'category',
+            title: {
+                text: 'Ratings'
+            },
+            labels: {
+                x: -10
+            }
+        },
+        yAxis: {
+            allowDecimals: false,
+            title: {
+                text: 'Count'
+            }
+        },
+        labels: {
+            formatter: function () {
+                return (this.value );
+            }
+        },
+        plotOptions: {
+            series: {
+                dataLabels: {
+                    enabled: true,
+                    format: '{point.label}'
+                },
+                tooltip: {
+                    formatter: function () {
+                        return '<b>' +'</b><br/>' +
+                            + this.point.y ;
+                    }
+                }
+            },
+            spline: {
+                marker: {
+                    enabled: true
+                }
+            }
+        },
+
+        series: [{
+            name: 'Orlando',
+            data: seriesRatingsOrlando
+        }, {
+            name: 'Albany',
+            data: seriesRatingsAlbany
         }],
         responsive: {
             rules: [{
