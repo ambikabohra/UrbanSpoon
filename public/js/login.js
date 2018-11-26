@@ -1,46 +1,42 @@
-var expression=/\s+/g;
+var expression = /\s+/g;
 
 $(init);
 
-function init()
-{
+function init() {
     cloneDragMe();
 
     $(".dragMe").draggable();
     $("#target").droppable();
 
-    $("#target").bind("drop",    highlightTarget);
+    $("#target").bind("drop", highlightTarget);
     $("#target").bind("dropout", resetTarget);
 }
 
-function cloneDragMe()
-{
+function cloneDragMe() {
     cuisines = ["Chinese", "Indian", "American"];
-    for (i = 1; i <= 2; i++){
+    for (i = 1; i <= 2; i++) {
         zValue = 101 + i;
-        xPos = 20*i;
-        yPos = 100 + 20*i + "px";
+        xPos = 20 * i;
+        yPos = 100 + 20 * i + "px";
         $("div:first").clone()
             .insertAfter("div:first")
             .css("left", xPos)
             .css("top", yPos)
             .css("zIndex", zValue)
-            .text(cuisines[i-1])
-            .append("<img height="+"100 "+" src="+"/static/images/cuisine"+i+".jpg" +" width="+"100"+" />");
+            .text(cuisines[i - 1])
+            .append("<img height=" + "100 " + " src=" + "/static/images/cuisine" + i + ".jpg" + " width=" + "100" + " />");
 
     }
-    $("div:first").append("<img height="+"100 "+" src="+"/static/images/cuisine"+i+".jpg" +" width="+"100"+" />");
+    $("div:first").append("<img height=" + "100 " + " src=" + "/static/images/cuisine" + i + ".jpg" + " width=" + "100" + " />");
 }
 
-function highlightTarget(event, ui)
-{
+function highlightTarget(event, ui) {
     $("#target").addClass("ui-state-highlight")
         .html("Favourite dropped ")
         .append(ui.draggable.text());
 }
 
-function resetTarget(event, ui)
-{
+function resetTarget(event, ui) {
     $("#target").removeClass("ui-state-highlight")
         .html("Drop on me");
 }
@@ -50,10 +46,10 @@ function validateUser() {
     var password = document.getElementById("password").value;
 
     emailRE = /^.+@.+\..{2,4}$/;
-    if (username!="" && !username.match(emailRE)){
+    if (username != "" && !username.match(emailRE)) {
         window.alert("Invalid email address. " + "Should be xxxxx@xxxxx.xxx\n");
         return false;
-    } 
+    }
 
 
     if (expression.test(password) || expression.test(username)) {
@@ -81,37 +77,38 @@ function validateUser() {
 
     const data = {
         username: username,
-        password:password
+        password: password
     };
 
     fetch("/loginValidate", {
         method: "POST",
         body: JSON.stringify(data),
-        headers:{
+        headers: {
             'Content-Type': 'application/json'
         }
     })
-    .then(r => r.json())
-    .then(response => {
-        if (response.message === "Success") {
-        //     window.location = "/restaurants";
+        .then(r => r.json())
+        .then(response => {
+            if (response.message === "Success") {
+                sessionStorage.setItem("useremail", username);
+                //     window.location = "/restaurants";
 
-        // }
-        // else {
-        //     window.alert(response.message);
-            alert("Login successful");
-            window.location = "restaurants";
-            return false;   
-        }else if(response.message === "Invalid"){
-            window.alert("Invalid Credentials/Password");
-        }
-        else {
-            window.alert("Unable to get User details!");
-        }
-        console.log('Success:', JSON.stringify(response));
-    }).catch(error => {
-        console.error('Error:', error)
-    });
+                // }
+                // else {
+                //     window.alert(response.message);
+                alert("Login successful");
+                window.location = "restaurants";
+                return false;
+            } else if (response.message === "Invalid") {
+                window.alert("Invalid Credentials/Password");
+            }
+            else {
+                window.alert("Unable to get User details!");
+            }
+            console.log('Success:', JSON.stringify(response));
+        }).catch(error => {
+            console.error('Error:', error)
+        });
 
     /*
     // else {

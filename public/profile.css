@@ -27,3 +27,22 @@ form {
 .disabled {
     cursor: not-allowed;
 }
+
+.charts-nav {
+    visibility: hidden;
+}
+
+.profile-image {
+    background: url(/static/images/bg_weather3.png) center/cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.profile_info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

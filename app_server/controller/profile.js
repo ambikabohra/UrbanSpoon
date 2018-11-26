@@ -1,7 +1,8 @@
 var url = require('url');
 
 exports.updateProfile = function updateProfile(req, res) {
-    var emailId = req.body.email;
+    //var emailId = req.body.email; //from body
+    var emailId = req.params.email;
     var userName = req.body.username;
     var phone = req.body.phone;
     var db = req.db;
@@ -42,7 +43,8 @@ exports.updateProfile = function updateProfile(req, res) {
 
 exports.deleteProfile = function deleteProfile(req, res) {
     
-    var email = req.session.user;
+    //var email = req.session.user;
+    var email = req.params.email;
     console.log(req.session);
     if (req.session.user) {
 
@@ -72,9 +74,10 @@ exports.deleteProfile = function deleteProfile(req, res) {
 
 exports.getUserDetails = function getUserDetails(req, res){
     console.log("Inside profile api");
-   // if(req.session.user){
-    var emailId = req.session.user;
-    console.log("heyyyy"+req.session.user);
+    // if(req.session.user){
+    //var emailId = req.session.user;
+    var emailId = req.params.email;
+    //console.log("heyyyy"+req.session.user);
     var db = req.db;
     var collection = db.get('user');
     
