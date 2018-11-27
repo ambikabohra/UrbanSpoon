@@ -11,7 +11,7 @@ var modelSearchbyName = require("../models/modelSearchbyName");
 //var modelProfile = require("../models/profile")
 
 //router.post('/search-restaurants', modelRestaurant.fetch_restaurantList); //display and search
-router.get('/getRestaurants', modelRestaurant.fetch_restaurantList); //index
+router.post('/getRestaurants', modelRestaurant.fetch_restaurantList); //index
 router.get('/showRestaurantbyName/:restaurantname', modelSearchbyName.fetch_restaurantbyName); //show
 
 router.get('/', ctrlMain.home);

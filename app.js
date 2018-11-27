@@ -9,7 +9,8 @@ var app = express();
 // mongodb access
 var mongo = require('mongodb');
 var monk = require('monk');
-var db = monk('localhost:27017/urbanspoon'); //db name
+//var db = monk('localhost:27017/urbanspoon'); //db name
+var db = monk('localhost:27017/yelp');
 
 //View engine setup
 app.set('views', path.join(__dirname, 'app_server', 'views'));

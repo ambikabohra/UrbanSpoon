@@ -65,7 +65,8 @@
 
 </head>
 
-<body onload="showGraphs()">
+<!-- <body onload="showGraphs(); getUsername()"> -->
+    <body onload="getUsername()">
 
         <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
@@ -73,7 +74,7 @@
                 <a class="navbar-brand brand-logo-mini" href="index.html"><img src="static/images/logo-mini.svg" alt="logo"/></a>
             </div>
             <div class="navbar-menu-wrapper d-flex align-items-stretch">
-                <div class="search-field d-none d-md-block">
+                <!-- <div class="search-field d-none d-md-block">
                 <form class="d-flex align-items-center h-100" action="#">
                     <div class="input-group">
                     <div class="input-group-prepend bg-transparent">
@@ -82,16 +83,17 @@
                     <input type="text" class="form-control bg-transparent border-0" placeholder="Search projects">
                     </div>
                 </form>
-                </div>
+                </div> -->
                 <ul class="navbar-nav navbar-nav-right">
                 <li class="nav-item nav-profile dropdown">
                     <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
                     <div class="nav-profile-img">
-                        <img src="static/images/faces/face1.jpg" alt="image">
+                        <img src="static/images/faces/usericon.png" alt="image">
                         <span class="availability-status online"></span>             
                     </div>
                     <div class="nav-profile-text">
-                        <p class="mb-1 text-black">David Greymaax</p>
+                        <!-- <p class="mb-1 text-black">David Greymaax</p> -->
+                        <p class="mb-1 text-black" id="unameTopbar"></p>
                     </div>
                     </a>
                     <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
@@ -123,11 +125,12 @@
                     <li class="nav-item nav-profile">
                         <a href="#" class="nav-link">
                             <div class="nav-profile-image">
-                            <img src="static/images/faces/face1.jpg" alt="profile">
+                            <img src="static/images/faces/usericon.png" alt="profile">
                             <span class="login-status online"></span> <!--change to offline or busy as needed-->              
                             </div>
                             <div class="nav-profile-text d-flex flex-column">
-                            <span class="font-weight-bold mb-2">David Grey. H</span>
+                            <!-- <span class="font-weight-bold mb-2">David Grey. H</span> -->
+                            <span class="font-weight-bold mb-2" id="uname"></span>
                             <span class="text-secondary text-small">User</span>
                             </div>
                             <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
@@ -166,13 +169,16 @@
                     </ol>
                     </nav>
                 </div>
+
+                <!-- <div class='tableauPlaceholder' id='viz1543214651881' style='position: relative'><noscript><a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Da&#47;Dashboard2_384&#47;Dashboard1&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='Dashboard2_384&#47;Dashboard1' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Da&#47;Dashboard2_384&#47;Dashboard1&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1543214651881');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.minWidth='420px';vizElement.style.maxWidth='650px';vizElement.style.width='100%';vizElement.style.minHeight='587px';vizElement.style.maxHeight='887px';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script> -->
                 <div class="row">
                     <div class="col-lg-6 grid-margin stretch-card">
                     <div class="card">
-                        <div class="card-body">
+                        <!-- <div class="card-body">
                         <h4 class="card-title">Line chart</h4>
                         <canvas id="lineChart" style="height:250px"></canvas>
-                        </div>
+                        </div> -->
+                        <div class='tableauPlaceholder' id='viz1543214651881' style='position: relative'><noscript><a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Da&#47;Dashboard2_384&#47;Dashboard1&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='Dashboard2_384&#47;Dashboard1' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Da&#47;Dashboard2_384&#47;Dashboard1&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1543214651881');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.minWidth='420px';vizElement.style.maxWidth='650px';vizElement.style.width='100%';vizElement.style.minHeight='587px';vizElement.style.maxHeight='887px';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
                     </div>
                     </div>
                     <div class="col-lg-6 grid-margin stretch-card">
@@ -221,7 +227,7 @@
                     </div>
                 </div>
             </div>
-            <div class="content-wrapper">
+            <!-- <div class="content-wrapper">
                 <div class="row" style="width:73%;height:600px">
                     <div id="container" class="column" style="background-color:#aaa;width: 50%;float: left;height: 300px;">
                     </div>
@@ -235,7 +241,7 @@
                         <h2>Chart 4</h2>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
     <!-- <div class="container"> -->

@@ -14,9 +14,15 @@ function getDetails() {
                 const usernameField = document.getElementById('username');
                 const emailField = document.getElementById('email');
                 const phoneField = document.getElementById('phone')
+                const sidebarusenamefield = document.getElementById('uname');
+                const topbarusernamefield = document.getElementById('unameTopbar');
+                const headingusernamefield = document.getElementById('headingusername');
                 usernameField.value = response.username;
                 emailField.value = response.email;
                 phoneField.value = response.phone;
+                sidebarusenamefield.innerText = response.username;
+                topbarusernamefield.innerText = response.username;
+                headingusernamefield.innerText = response.username;
                 //window.location = "/";      
             }
             else {
@@ -87,6 +93,7 @@ function updateAccount() {
             console.log(response.message);
             if (response.message === "Success") {
 
+                // $("<div>Updated successfully!</div>").dialog();
                 window.alert("Updated successfully!");
                 //window.location = "profile";
             }
@@ -106,6 +113,7 @@ function deleteAccount() {
     var email = sessionStorage.getItem("useremail");
     // };
     var act = confirm("Are you sure you want to delete your account?");
+    //$("<div>Are you sure you want to delete your account?</div>").dialog();
 
     if (act) {
         fetch("/delete-profile/" + email, {
