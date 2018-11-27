@@ -2,6 +2,9 @@
   'use strict';
   $(function() {
     var body = $('body');
+    // var contentWrapper = $('.content-wrapper');
+    // var scroller = $('.container-scroller');
+    // var footer = $('.footer');
     var contentWrapper = $('.content-wrapper');
     var scroller = $('.container-scroller');
     var footer = $('.footer');

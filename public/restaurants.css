@@ -81,8 +81,8 @@ body {
 }
 
 #restaurant-list {
-    width: 500px;    
-    margin-top: 10px;
+    margin-top: 20px;
+    font-family: "ubuntu-regular", sans-serif;
 }
 
 .restaurant {
@@ -90,22 +90,47 @@ body {
     align-items: flex-start;
     justify-content: flex-start;
     margin-bottom: 10px;
-    background-color: aliceblue;
+    background-color: white;
+    flex-direction: row;
 }
 
 .img-container {
-    max-width: 200px;
-    overflow: hidden;
+    width: 100px;
+    height: 100px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 5px;
 }
 
 .data-container {
     width: 300px;
     margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.data-container > div {
+    margin-top: 10px;
 }
 
 .restaurant img {
     min-width: 200px;
     height: 100px;
+}
+
+.restaurant .card-body-line-1 {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.restaurant .card-body-line-2 {
+    font-size: 14px;
+}
+
+.restaurant .card-body-line-3 {
+    font-size: 12px;
 }
 
 #selectable .ui-selecting {
@@ -115,4 +140,54 @@ body {
 #selectable .ui-selected {
     background-color: black;
     color: white;
+}
+
+#map {
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.select-form {
+    display: flex;
+    justify-content: space-between;
+    flex-grow: 1;
+    padding-left: 15px;
+}
+
+.select-form select {
+    border: 0px;
+    height: 43px;
+    border-radius: 5px;
+    background-color: white;
+    font-family: "ubuntu-regular", sans-serif;
+    color: #495057;
+    font-size: 16px;
+}
+
+.h-100 {
+    width: 100%;
+}
+
+.purchase-popup {
+    /* display: flex;
+    align-items: center;
+    justify-content: space-between; */
+    padding: 15px;
+    margin: 0px;
+}
+
+.div-1 {
+    padding-right: 0px;
+}
+.div-2 {
+    padding-left: 15px;
+}
+
+#restaurant-search-field {
+    padding-left: 0px;
+    flex-grow: 2;
+}
+
+.page-header {
+    margin-top: 30px;
 }

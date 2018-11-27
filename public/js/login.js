@@ -1,4 +1,4 @@
-var expression=/\s+/g;
+var expression = /\s+/g;
 
 
 // var particle = require('particles.js');
@@ -40,15 +40,13 @@ var expression=/\s+/g;
 //     $("div:first").append("<img height="+"100 "+" src="+"/static/images/cuisine"+i+".jpg" +" width="+"100"+" />");
 // }
 
-function highlightTarget(event, ui)
-{
+function highlightTarget(event, ui) {
     $("#target").addClass("ui-state-highlight")
         .html("Favourite dropped ")
         .append(ui.draggable.text());
 }
 
-function resetTarget(event, ui)
-{
+function resetTarget(event, ui) {
     $("#target").removeClass("ui-state-highlight")
         .html("Drop on me");
 }
@@ -58,10 +56,10 @@ function validateUser() {
     var password = document.getElementById("password").value;
 
     emailRE = /^.+@.+\..{2,4}$/;
-    if (username!="" && !username.match(emailRE)){
+    if (username != "" && !username.match(emailRE)) {
         window.alert("Invalid email address. " + "Should be xxxxx@xxxxx.xxx\n");
         return false;
-    } 
+    }
 
 
     if (expression.test(password) || expression.test(username)) {
@@ -89,37 +87,38 @@ function validateUser() {
 
     const data = {
         username: username,
-        password:password
+        password: password
     };
 
     fetch("/loginValidate", {
         method: "POST",
         body: JSON.stringify(data),
-        headers:{
+        headers: {
             'Content-Type': 'application/json'
         }
     })
-    .then(r => r.json())
-    .then(response => {
-        if (response.message === "Success") {
-        //     window.location = "/restaurants";
+        .then(r => r.json())
+        .then(response => {
+            if (response.message === "Success") {
+                sessionStorage.setItem("useremail", username);
+                //     window.location = "/restaurants";
 
-        // }
-        // else {
-        //     window.alert(response.message);
-            alert("Login successful");
-            window.location = "restaurants";
-            return false;   
-        }else if(response.message === "Invalid"){
-            window.alert("Invalid Credentials/Password");
-        }
-        else {
-            window.alert("Unable to get User details!");
-        }
-        console.log('Success:', JSON.stringify(response));
-    }).catch(error => {
-        console.error('Error:', error)
-    });
+                // }
+                // else {
+                //     window.alert(response.message);
+                alert("Login successful");
+                window.location = "restaurants";
+                return false;
+            } else if (response.message === "Invalid") {
+                window.alert("Invalid Credentials/Password");
+            }
+            else {
+                window.alert("Unable to get User details!");
+            }
+            console.log('Success:', JSON.stringify(response));
+        }).catch(error => {
+            console.error('Error:', error)
+        });
 
     /*
     // else {
