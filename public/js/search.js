@@ -13,6 +13,8 @@ var restaurantResponse = "";
 var seen = false;
 
 function onLoadHandler() {
+    var email = sessionStorage.getItem("useremail");
+    if(email){
     clearMarkers();
     const list = document.getElementById("restaurant-list");
     const location = document.getElementById("location").value;
@@ -44,6 +46,11 @@ function onLoadHandler() {
         }).catch(error => {
             console.error('Error:', error)
         });
+    }
+    else {
+        window.alert("Please login!");
+        window.location = "login";
+    }
 }
 
 function getUsername() {

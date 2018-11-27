@@ -49,6 +49,11 @@ exports.dashboard = function(request, result)
     sendPage('dashboard.html', result);
 };
 
+exports.dashboardCity = function(request, result) 
+{
+    sendPage('dashboardCity.html', result);
+};
+
 exports.profile = function(request, result) 
 {
     sendPage('profile.html', result);

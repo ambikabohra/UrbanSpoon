@@ -19,6 +19,7 @@ router.get('/test', ctrlMain.test);
 router.get('/login', ctrlMain.login);
 router.get('/restaurants', ctrlMain.restaurants); 
 router.get('/dashboard', ctrlMain.dashboard); 
+router.get('/dashboardCity', ctrlMain.dashboardCity); 
 router.get('/profile', ctrlMain.profile);
 router.get('/signup', ctrlMain.signup); //new
 router.post('/loginValidate', ctrlLogin.postLogin);

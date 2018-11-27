@@ -20941,4 +20941,8 @@ dl li {
   color: initial;
 }
 
+.collapse:not(.show) {
+  display: none;
+}
+
 /*# sourceMappingURL=maps/style.css.map */

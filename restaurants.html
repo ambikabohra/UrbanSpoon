@@ -72,8 +72,8 @@
     </ul> -->
     <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-            <a class="navbar-brand brand-logo" href="index.html"><img src="static/images/logo.svg" alt="logo" /></a>
-            <a class="navbar-brand brand-logo-mini" href="index.html"><img src="static/images/logo-mini.svg" alt="logo" /></a>
+            <a class="navbar-brand brand-logo" href="#"><img src="static/images/logo_small.png" alt="logo"/></a>
+            <!-- <a class="navbar-brand brand-logo-mini" href="index.html"><img src="static/images/logo-mini.svg" alt="logo" /></a> -->
         </div>
         <div class="navbar-menu-wrapper d-flex align-items-stretch">
             <!-- <div class="search-field d-none d-md-block">
@@ -146,12 +146,38 @@
                         <i class="mdi mdi-home menu-icon"></i>
                     </a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link" href="/dashboard">
                         <span class="menu-title">Dashboard</span>
                         <i class="mdi mdi-chart-bar menu-icon"></i>
                     </a>
-                </li>
+                </li> -->
+                <!-- <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="/dashboard" aria-expanded="false" aria-controls="ui-basic">
+                        <span class="menu-title">Dashboard</span>
+                        <i class="menu-arrow"></i>
+                        <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+                  
+                        </a>
+                        <div class="collapse" id="ui-basic">
+                                <ul class="nav flex-column sub-menu">
+                                    <li class="nav-item"> <a class="nav-link" href="/dashboardCity">City based analysis</a></li>
+                                </ul>
+                        </div>
+                    </li> -->
+                    <li class="nav-item">
+                            <a class="nav-link" href="/dashboard" >
+                            <span class="menu-title">Dashboard</span>
+                            <i class="mdi mdi-chart-bar menu-icon"></i>
+                        
+                            <!-- <i class="mdi mdi-chart-bar menu-icon"></i> -->
+                            </a>
+                            <div>
+                                    <ul class="nav flex-column sub-menu">
+                                        <li class="nav-item"> <a class="nav-link" href="/dashboardCity">City based analysis</a></li>
+                                    </ul>
+                            </div>
+                        </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/profile">
                         <span class="menu-title">Profile</span>
@@ -336,6 +362,7 @@
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAX4MnOHKKbsRC7rW1s7G5av1Vxt90hgL0&callback=initMap"></script>
     <script src="/static/js/off-canvas.js"></script>
     <script src="/static/js/misc.js"></script>
+    <script src="/static/js/dashboard.js"></script>
 </body>
 
 </html>

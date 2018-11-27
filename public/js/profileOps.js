@@ -132,7 +132,8 @@ function deleteAccount() {
 
                 }
                 else {
-                    window.alert("Unable to Delete Profile!");
+                    //window.alert("Unable to Delete Profile!");
+                    window.alert("User not logged in! Please sign in");
                 }
                 console.log('Success:', JSON.stringify(response));
             }).catch(error => {
