@@ -15,6 +15,7 @@ router.post('/getRestaurants', modelRestaurant.fetch_restaurantList); //index
 router.get('/showRestaurantbyName/:restaurantname', modelSearchbyName.fetch_restaurantbyName); //show
 
 router.get('/', ctrlMain.home);
+router.get('/test', ctrlMain.test);
 router.get('/login', ctrlMain.login);
 router.get('/restaurants', ctrlMain.restaurants); 
 router.get('/dashboard', ctrlMain.dashboard); 

@@ -9,11 +9,12 @@
   "dependencies": {
     "express": "^4.16.2",
     "express-session": "^1.15.6",
-    "line-reader": "^0.4.0",
     "jade": "~1.11.0",
+    "line-reader": "^0.4.0",
     "mongodb": "^2.2.25",
     "monk": "^4.0.0",
     "nodemon": "^1.15.1",
+    "particles.js": "^2.0.0",
     "request": "^2.83.0"
   },
   "author": "",
