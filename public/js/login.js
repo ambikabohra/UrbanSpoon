@@ -1,36 +1,44 @@
 var expression=/\s+/g;
 
-$(init);
 
-function init()
-{
-    cloneDragMe();
+// var particle = require('particles.js');
 
-    $(".dragMe").draggable();
-    $("#target").droppable();
 
-    $("#target").bind("drop",    highlightTarget);
-    $("#target").bind("dropout", resetTarget);
-}
+// var particles = Particles.init({
+// 	selector: '.particles',
+//   color: '#DA0463'
+// });
+// $(init);
 
-function cloneDragMe()
-{
-    cuisines = ["Chinese", "Indian", "American"];
-    for (i = 1; i <= 2; i++){
-        zValue = 101 + i;
-        xPos = 20*i;
-        yPos = 100 + 20*i + "px";
-        $("div:first").clone()
-            .insertAfter("div:first")
-            .css("left", xPos)
-            .css("top", yPos)
-            .css("zIndex", zValue)
-            .text(cuisines[i-1])
-            .append("<img height="+"100 "+" src="+"/static/images/cuisine"+i+".jpg" +" width="+"100"+" />");
+// function init()
+// {
+//     cloneDragMe();
 
-    }
-    $("div:first").append("<img height="+"100 "+" src="+"/static/images/cuisine"+i+".jpg" +" width="+"100"+" />");
-}
+//     $(".dragMe").draggable();
+//     $("#target").droppable();
+
+//     $("#target").bind("drop",    highlightTarget);
+//     $("#target").bind("dropout", resetTarget);
+// }
+
+// function cloneDragMe()
+// {
+//     cuisines = ["Chinese", "Indian", "American"];
+//     for (i = 1; i <= 2; i++){
+//         zValue = 101 + i;
+//         xPos = 20*i;
+//         yPos = 100 + 20*i + "px";
+//         $("div:first").clone()
+//             .insertAfter("div:first")
+//             .css("left", xPos)
+//             .css("top", yPos)
+//             .css("zIndex", zValue)
+//             .text(cuisines[i-1])
+//             .append("<img height="+"100 "+" src="+"/static/images/cuisine"+i+".jpg" +" width="+"100"+" />");
+
+//     }
+//     $("div:first").append("<img height="+"100 "+" src="+"/static/images/cuisine"+i+".jpg" +" width="+"100"+" />");
+// }
 
 function highlightTarget(event, ui)
 {

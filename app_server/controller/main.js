@@ -23,17 +23,20 @@ function sendPage(fileName, result)
 
 exports.home = function(request, result) 
 {
-    sendPage('home.html', result);
+    sendPage('landing_page.html', result);
 };
-
+exports.test = function(request, result) 
+{
+    sendPage('test.html', result);
+};
 exports.login = function(request, result) 
 {
-    sendPage('login.html', result);
+    sendPage('login_new.html', result);
 };
 
 exports.signup = function(request, result)
 {
-    sendPage('signup.html', result);
+    sendPage('register.html', result);
 };
 
 exports.restaurants = function(request, result) 
