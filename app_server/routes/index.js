@@ -12,6 +12,7 @@ var modelRestaurant = require("../models/modelRestaurant");
 router.post('/search-restaurants', modelRestaurant.fetch_restaurantList); //display and search
 
 router.get('/', ctrlMain.home);
+router.get('/test', ctrlMain.test);
 router.get('/login', ctrlMain.login);
 router.get('/restaurants', ctrlMain.restaurants);
 router.get('/profile', ctrlMain.profile);
