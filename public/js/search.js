@@ -716,7 +716,7 @@ function initMap() {
         zoom: 10,
         center: new google.maps.LatLng(36.1699, -115.1398),
         mapTypeId: google.maps.MapTypeId.ROADMAP,
-        scrollwheel: false
+        // scrollwheel: false
     });
 
     // Create a <script> tag and set the USGS URL as the source.
@@ -734,9 +734,9 @@ function addMarker(longitude, latitude, restaurantName) {
     var myLatLng = { lat: latitude, lng: longitude };
     var marker = new google.maps.Marker({
         position: myLatLng,
-        // animation:google.maps.Animation.BOUNCE,
         map: map
     });
+    map.setCenter(myLatLng);
     markers.push(marker);
 
     //restaurants name on pop-up info window
@@ -744,11 +744,6 @@ function addMarker(longitude, latitude, restaurantName) {
         content: restaurantName
 
     });
-
-    // If you want to open info window on click
-    // google.maps.event.addListener(marker, 'click', function() {
-    //     infowindow.open(map, this);
-    // });
 
     google.maps.event.addListener(marker, 'mouseover', function() {
         infowindow.setContent(restaurantName);
@@ -758,7 +753,7 @@ function addMarker(longitude, latitude, restaurantName) {
     google.maps.event.addListener(marker, 'mouseout', function() {
         infowindow.close();
     });
-    //infowindow.open(map, marker);
+
 }
 
 // Sets the map on all markers in the array.
